@@ -25,9 +25,7 @@ def genTextures = tasks.register('genTextures') {
 }
 sourceSets.main.resources.srcDir(texOut)
 tasks.named('processResources') { dependsOn genTextures }
-======== FIN ========
 
-======== NOM DU FICHIER: settings.gradle ========
 pluginManagement {
     repositories {
         gradlePluginPortal()
