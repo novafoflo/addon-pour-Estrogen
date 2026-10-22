@@ -1,0 +1,38 @@
+plugins {
+    id 'java-library'
+    id 'net.neoforged.moddev' version '1.0.21'
+}
+version = '1.0.0'
+group = 'com.example.starlit'
+base { archivesName = 'starlit_outfit' }
+java.toolchain.languageVersion = JavaLanguageVersion.of(21)
+
+neoForge {
+    version = '21.1.172'
+    runs { client { client() } }
+    mods { starlit_outfit { sourceSet sourceSets.main } }
+}
+
+// La texture blanche (teintee par les couleurs de la config) est generee a la compilation
+def texOut = layout.buildDirectory.dir('generated/tex').get().asFile
+def genTextures = tasks.register('genTextures') {
+    outputs.dir(texOut)
+    doLast {
+        def f = new File(texOut, 'assets/starlit_outfit/textures/entity/layer.png')
+        f.parentFile.mkdirs()
+        f.bytes = java.util.Base64.getDecoder().decode('iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAAYklEQVR42u3QAQEAAAQDMPTvfD3YIqyTpB6bek6AAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBFywVToEfK18LGEAAAAASUVORK5CYII=')
+    }
+}
+sourceSets.main.resources.srcDir(texOut)
+tasks.named('processResources') { dependsOn genTextures }
+======== FIN ========
+
+======== NOM DU FICHIER: settings.gradle ========
+pluginManagement {
+    repositories {
+        gradlePluginPortal()
+        maven { url = 'https://maven.neoforged.net/releases' }
+    }
+}
+plugins { id 'org.gradle.toolchains.foojay-resolver-convention' version '0.8.0' }
+rootProject.name = 'starlit_outfit'
