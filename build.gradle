@@ -25,12 +25,3 @@ def genTextures = tasks.register('genTextures') {
 }
 sourceSets.main.resources.srcDir(texOut)
 tasks.named('processResources') { dependsOn genTextures }
-
-pluginManagement {
-    repositories {
-        gradlePluginPortal()
-        maven { url = 'https://maven.neoforged.net/releases' }
-    }
-}
-plugins { id 'org.gradle.toolchains.foojay-resolver-convention' version '0.8.0' }
-rootProject.name = 'starlit_outfit'
