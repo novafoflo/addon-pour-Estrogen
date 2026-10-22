@@ -1,0 +1,30 @@
+modLoader = "javafml"
+loaderVersion = "[4,)"
+license = "MIT"
+
+[[mods]]
+modId = "starlit_outfit"
+version = "1.0.0"
+displayName = "Starlit Outfit (Estrogen addon)"
+description = "Addon pour Estrogen: avec l'effet Girl Power, ton personnage change de look (cheveux longs, veste, jupe). Couleurs reglables."
+
+[[dependencies.starlit_outfit]]
+modId = "neoforge"
+type = "required"
+versionRange = "[21.1,)"
+ordering = "NONE"
+side = "CLIENT"
+
+[[dependencies.starlit_outfit]]
+modId = "minecraft"
+type = "required"
+versionRange = "[1.21.1,1.22)"
+ordering = "NONE"
+side = "CLIENT"
+
+[[dependencies.starlit_outfit]]
+modId = "estrogen"
+type = "required"
+versionRange = "[6,)"
+ordering = "AFTER"
+side = "CLIENT"
